@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+    <h1 class="display-3 fw-bold text-danger fade-in-out text-center" >Category search</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-0">
+            </div>      
+            <div class="col-md-12">
+                <div class="row">
+                    {% for producto in productos %}
+                        <div class="col-md-3 mb-4">
+                            <div class="product card bg-success bg-opacity-10">
+                                <img src="{% static producto.image %}" class="card-img-top img-fluid rounded mx-auto d-block" alt="{{ producto.title }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ producto.title }}</h5>
+                                    <p class="card-text">{{ producto.description }}</p>
+                                    <div><span class="sp" data-product-id="{{ producto.id }}"></span> </div>
+                                    <p class="card-text text-danger">$ {{ producto.price }}</p>
+                                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-0">
+            </div>
+        </div>
+    </div>
+{% endblock %}

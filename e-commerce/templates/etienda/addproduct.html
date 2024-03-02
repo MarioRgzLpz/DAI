@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-success bg-opacity-25 ">
+                    <h1 class="h4 mb-0">Add Product</h1>
+                </div>
+                <div class="card-body">
+                    <form action="{% url 'addproduct' %}" method="post" enctype="multipart/form-data" class="form">
+                        {% if messages %}
+                        <div class="container mt-3">
+                            {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <div class="text-start mt-3">
+                            {% bootstrap_button button_type="submit" content="Add Product" button_class="btn bg-success bg-opacity-25 "%}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
